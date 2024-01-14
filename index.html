@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heartfelt Apology</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f8f8f8;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        #game-container {
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            width: 250px;
+            height: 250px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .heart {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: #ff4d4d;
+            clip-path: polygon(
+                50% 0%,
+                100% 35%,
+                83% 100%,
+                17% 100%,
+                0% 35%
+            );
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .heart:hover {
+            transform: scale(1.2) translate(-50%, -50%);
+        }
+
+        #message-container {
+            text-align: center;
+            margin-top: 20px;
+            margin-left: 10px;
+            color: #333;
+            width: 90%;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #ff4d4d;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div id="game-container">
+    <div id="message-container">
+        <h2>Oops! I'm sorry for what I said...</h2>
+        <p>Try to catch these hearts as a small token of my apology!</p>
+    </div>
+</div>
+
+<script>
+    const gameContainer = document.getElementById('game-container');
+    const messageContainer = document.getElementById('message-container');
+
+    const createHeart = () => {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.style.left = `${Math.random() * (gameContainer.offsetWidth - 40)}px`;
+        heart.style.top = `${Math.random() * (gameContainer.offsetHeight - 40)}px`;
+        heart.addEventListener('click', () => {
+            gameContainer.removeChild(heart);
+            if (gameContainer.children.length === 0) {
+                messageContainer.innerHTML = '<h2>Thank you for forgiving me!</h2>';
+            }
+        });
+        gameContainer.appendChild(heart);
+    };
+
+    const createHeartsInterval = setInterval(createHeart, 1000);
+
+    setTimeout(() => {
+        clearInterval(createHeartsInterval);
+        messageContainer.innerHTML = '<h2>I really didn\'t mean to hurt you...srry 3ych 7by wlh ma 9sdtch nouj3k w t3rf 9dch Nèbk w nmout 3lik</h2>';
+    }, 15000);
+</script>
+
+</body>
+</html>
